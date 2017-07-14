@@ -10,12 +10,12 @@ import BB7 from './pages/BB7';
 
 export default (
       <Switch>
-        <Route exact path='/BB1' component={BB1} />
-        <Route path='/BB2' component={BB2} />
-        <Route path='/BB3' component={BB3} />
-        <Route path='/BB4' component={BB4} />
-        <Route path='/BB5' component={BB5} />
-        <Route path='/BB6' component={BB6} />
-        <Route path='/BB7' component={BB7} />
+        <Route exact path='/chivprod042' component={BB1} />
+        <Route path='/chivprod026' component={BB2} />
+        <Route path='/chivprod044' component={BB3} />
+        <Route path='/chivprod034' component={BB4} />
+        <Route path='/chivprod046' component={BB5} />
+        <Route path='/chivprod049' component={BB6} />
+        <Route path='/chivprod007' component={BB7} />
       </Switch>
 );

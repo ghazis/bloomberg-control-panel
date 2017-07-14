@@ -1,16 +1,15 @@
 import { not_running, running } from '../components/images';
 
-export const bbState = {
-                    state: 'Not Running',
+export const StoppedBBState = {
+                    state: 'Stopped',
                     img: not_running,
                     style: { width: 150 }
                 }
 
-
-export const startButtonState = {
-                    name: 'Start Bloomberg',
-                    cmd: '_off',
-                    classname: 'btn-danger'
+export const startedBBState = {
+                    state: 'Running',
+                    img: running,
+                    style: { width: 150 }
                 }
 
 export const stopButtonState = {
@@ -19,9 +18,15 @@ export const stopButtonState = {
                     classname: 'btn-success'
                 }
 
+export const startButtonState = {
+                    name: 'Start Bloomberg',
+                    cmd: '_off',
+                    classname: 'btn-danger'
+                }
 
-export const InitialButtonsState = {
-	bbState: bbState,
-    startButtonState: startButtonState,
-    stopButtonState: stopButtonState
+export const InitialState = {
+	bbState: StoppedBBState,
+    startedBBState: startedBBState,
+    stopButtonState: stopButtonState,
+    startButtonState: startButtonState
 }

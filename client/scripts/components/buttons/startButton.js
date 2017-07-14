@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { runScript } from '../../actions/bb';
+import {  runScript } from '../../actions/bb';
 
 class StartButton extends Component {
+
+
 
 	render() {
 

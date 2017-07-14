@@ -1,3 +1,9 @@
+export function checkingBloomberg() {
+    return {
+        type: 'CHECKING_BLOOMBERG'
+    };
+}
+
 export function startBloomberg() {
     return {
         type: 'START_BLOOMBERG'
@@ -29,6 +35,29 @@ export function setBBState(state) {
     };
 }
 
+function setInitialState(dispatch, status) {
+    if (status == 1) {
+        dispatch(startedBloomberg());
+    } else {
+        dispatch(stoppedBloomberg());
+    }
+}
+
+export function get_state(server) {
+    return (dispatch, getState) => {
+        dispatch(checkingBloomberg())
+        fetch('http://localhost:7000/get_state?server=\\\\' + server)
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+
+            return response;
+        })
+        .then((response) => response.json())
+        .then((res) => setInitialState(dispatch, res[0].results))
+    };
+}
 
 export function runScript(url, name) {
     return (dispatch, getState) => {

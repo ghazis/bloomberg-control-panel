@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { StartButton, StopButton } from '../buttons';
 import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { get_state } from '../../actions/bb';
 
-class BB1 extends Component {
+class BB4 extends Component {
+
+  componentDidMount() {
+    return(this.props.get_state("chivprod034"));
+  }
 
   render () {
 
@@ -64,5 +69,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)
-(BB1);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        get_state: (server) => dispatch(get_state(server))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)
+(BB4);

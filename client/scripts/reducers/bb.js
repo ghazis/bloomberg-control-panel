@@ -1,8 +1,26 @@
-import { InitialButtonsState, bbState, startButtonState, stopButtonState } from './states';
+import { InitialState, bbState, startedBBState, stopButtonState, startButtonState } from './states';
 import { not_running, running, is_loading } from '../components/images';
 
-export function bbSetStates(state = InitialButtonsState, action) {
+export function bbSetStates(state = InitialState, action) {
     switch (action.type) {
+        case 'CHECKING_BLOOMBERG':
+            return {
+                ...state,
+                    startButtonState:{
+                        ...startButtonState,
+                            name: 'Checking Status...'
+                    },
+                    bbState:{
+                        ...bbState,
+                        state: 'Checking Status...',
+                            img: is_loading,
+                            style: { width: 90 }
+                    },
+                    stopButtonState: {
+                        ...stopButtonState,
+                            name: 'Checking Status...'
+                    }
+            }
         case 'START_BLOOMBERG':
             return {
                 ...state,
@@ -12,6 +30,7 @@ export function bbSetStates(state = InitialButtonsState, action) {
                     },
                     bbState:{
                         ...bbState,
+                        state: 'Starting',
                             img: is_loading,
                             style: { width: 90 }
                     },
@@ -20,14 +39,15 @@ export function bbSetStates(state = InitialButtonsState, action) {
         case 'STARTED_BLOOMBERG':
             return {
                 ...state,
+                    stopButtonState:{
+                        ...stopButtonState,
+                            name: 'Stop Bloomberg'
+                    },
                     startButtonState:{
                         ...startButtonState,
-                            name: 'Started!'
+                            name: 'Start Bloomberg'
                     },
-                    bbState:{
-                        ...bbState,
-                            img: running
-                    }
+                    bbState: startedBBState
             }
         case 'STOP_BLOOMBERG':
             return {
@@ -38,6 +58,7 @@ export function bbSetStates(state = InitialButtonsState, action) {
                     },
                     bbState:{
                         ...bbState,
+                            state: 'Stopping',
                             img: is_loading,
                             style: { width: 90 }
                     },
@@ -46,13 +67,18 @@ export function bbSetStates(state = InitialButtonsState, action) {
         case 'STOPPED_BLOOMBERG':
             return {
                 ...state,
+                    startButtonState:{
+                        ...startButtonState,
+                            name: 'Start Bloomberg'
+                    },
                     stopButtonState:{
                         ...stopButtonState,
-                            name: 'Stopped!'
+                            name: 'Stop Bloomberg'
                     },
-                    bbState:{
+                    bbState: {
                         ...bbState,
-                            img: not_running
+                            img: not_running,
+                            style: { width: 150 }
                     }
             }
         case 'SET_BB_STATE':
