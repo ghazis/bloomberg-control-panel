@@ -67,6 +67,12 @@ export function bbSetStates(state = InitialState, action) {
         case 'STOPPED_BLOOMBERG':
             return {
                 ...state,
+                    bbState: {
+                        ...bbState,
+                            state: 'Not Running',
+                            img: not_running,
+                            style: { width: 150 }
+                    },
                     startButtonState:{
                         ...startButtonState,
                             name: 'Start Bloomberg'
@@ -74,19 +80,6 @@ export function bbSetStates(state = InitialState, action) {
                     stopButtonState:{
                         ...stopButtonState,
                             name: 'Stop Bloomberg'
-                    },
-                    bbState: {
-                        ...bbState,
-                            img: not_running,
-                            style: { width: 150 }
-                    }
-            }
-        case 'SET_BB_STATE':
-            return {
-                ...state,
-                    bbState:{
-                        ...bbState,
-                            state: action.state
                     }
             }
 

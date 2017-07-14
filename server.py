@@ -42,4 +42,4 @@ if __name__ == "__main__":
     #subprocess.Popen("webpack")
 
     # Start the Flask app
-    app.run(host='0.0.0.0', port=7000, threaded=True)
+    app.run(host='0.0.0.0', port=9999, threaded=True)

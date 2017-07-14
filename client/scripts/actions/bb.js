@@ -28,13 +28,6 @@ export function stoppedBloomberg() {
     };
 }
 
-export function setBBState(state) {
-    return {
-        type: 'SET_BB_STATE',
-        state: state
-    };
-}
-
 function setInitialState(dispatch, status) {
     if (status == 1) {
         dispatch(startedBloomberg());
@@ -46,7 +39,7 @@ function setInitialState(dispatch, status) {
 export function get_state(server) {
     return (dispatch, getState) => {
         dispatch(checkingBloomberg())
-        fetch('http://localhost:7000/get_state?server=\\\\' + server)
+        fetch('http://chivprod031:9999/get_state?server=\\\\' + server)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);

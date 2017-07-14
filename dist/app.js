@@ -2971,7 +2971,6 @@ exports.startBloomberg = startBloomberg;
 exports.startedBloomberg = startedBloomberg;
 exports.stopBloomberg = stopBloomberg;
 exports.stoppedBloomberg = stoppedBloomberg;
-exports.setBBState = setBBState;
 exports.get_state = get_state;
 exports.runScript = runScript;
 
@@ -3005,13 +3004,6 @@ function stoppedBloomberg() {
     };
 }
 
-function setBBState(state) {
-    return {
-        type: 'SET_BB_STATE',
-        state: state
-    };
-}
-
 function setInitialState(dispatch, status) {
     if (status == 1) {
         dispatch(startedBloomberg());
@@ -3023,7 +3015,7 @@ function setInitialState(dispatch, status) {
 function get_state(server) {
     return function (dispatch, getState) {
         dispatch(checkingBloomberg());
-        fetch('http://localhost:7000/get_state?server=\\\\' + server).then(function (response) {
+        fetch('http://chivprod031:9999/get_state?server=\\\\' + server).then(function (response) {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
@@ -39612,7 +39604,7 @@ var StartButton = (function (_Component) {
             return _react2['default'].createElement(
                 _reactBootstrap.Button,
                 { onClick: function () {
-                        _this.props.runScript('http://localhost:7000/send_bb_cmd?server=\\\\' + _this.props.server + '&username=' + _this.props.username + '&pwd=' + _this.props.pwd + '&cmd=start', _this.props.buttonData.name);
+                        _this.props.runScript('http://chivprod031:9999/send_bb_cmd?server=\\\\' + _this.props.server + '&username=' + _this.props.username + '&pwd=' + _this.props.pwd + '&cmd=start', _this.props.buttonData.name);
                     }, bsStyle: 'primary', bsSize: 'large', block: true },
                 this.props.buttonData.name
             );
@@ -51665,7 +51657,7 @@ var StopButton = (function (_Component) {
             return _react2['default'].createElement(
                 _reactBootstrap.Button,
                 { onClick: function () {
-                        _this.props.runScript('http://localhost:7000/send_bb_cmd?server=\\\\' + _this.props.server + '&username=' + _this.props.username + '&pwd=' + _this.props.pwd + '&cmd=stop', _this.props.buttonData.name);
+                        _this.props.runScript('http://chivprod031:9999/send_bb_cmd?server=\\\\' + _this.props.server + '&username=' + _this.props.username + '&pwd=' + _this.props.pwd + '&cmd=stop', _this.props.buttonData.name);
                     }, bsStyle: 'primary', bsSize: 'large', block: true },
                 this.props.buttonData.name
             );
@@ -51766,7 +51758,7 @@ var BB2 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Controls'
                 )
               )
@@ -51811,7 +51803,7 @@ var BB2 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Status'
                 )
               )
@@ -51827,6 +51819,11 @@ var BB2 = (function (_Component) {
                   { className: 'text-center' },
                   _react2['default'].createElement('img', { src: this.props.img, style: this.props.style })
                 )
+              ),
+              _react2['default'].createElement(
+                'h1',
+                { className: 'text-center' },
+                this.props.status
               )
             )
           )
@@ -51840,6 +51837,7 @@ var BB2 = (function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    status: state.bbSetStates.bbState.state,
     img: state.bbSetStates.bbState.img,
     style: state.bbSetStates.bbState.style
   };
@@ -51929,7 +51927,7 @@ var BB3 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Controls'
                 )
               )
@@ -51974,7 +51972,7 @@ var BB3 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Status'
                 )
               )
@@ -51990,6 +51988,11 @@ var BB3 = (function (_Component) {
                   { className: 'text-center' },
                   _react2['default'].createElement('img', { src: this.props.img, style: this.props.style })
                 )
+              ),
+              _react2['default'].createElement(
+                'h1',
+                { className: 'text-center' },
+                this.props.status
               )
             )
           )
@@ -52003,6 +52006,7 @@ var BB3 = (function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    status: state.bbSetStates.bbState.state,
     img: state.bbSetStates.bbState.img,
     style: state.bbSetStates.bbState.style
   };
@@ -52092,7 +52096,7 @@ var BB4 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Controls'
                 )
               )
@@ -52137,7 +52141,7 @@ var BB4 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Status'
                 )
               )
@@ -52153,6 +52157,11 @@ var BB4 = (function (_Component) {
                   { className: 'text-center' },
                   _react2['default'].createElement('img', { src: this.props.img, style: this.props.style })
                 )
+              ),
+              _react2['default'].createElement(
+                'h1',
+                { className: 'text-center' },
+                this.props.status
               )
             )
           )
@@ -52166,6 +52175,7 @@ var BB4 = (function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    status: state.bbSetStates.bbState.state,
     img: state.bbSetStates.bbState.img,
     style: state.bbSetStates.bbState.style
   };
@@ -52255,7 +52265,7 @@ var BB5 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Controls'
                 )
               )
@@ -52300,7 +52310,7 @@ var BB5 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Status'
                 )
               )
@@ -52316,6 +52326,11 @@ var BB5 = (function (_Component) {
                   { className: 'text-center' },
                   _react2['default'].createElement('img', { src: this.props.img, style: this.props.style })
                 )
+              ),
+              _react2['default'].createElement(
+                'h1',
+                { className: 'text-center' },
+                this.props.status
               )
             )
           )
@@ -52329,6 +52344,7 @@ var BB5 = (function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    status: state.bbSetStates.bbState.state,
     img: state.bbSetStates.bbState.img,
     style: state.bbSetStates.bbState.style
   };
@@ -52418,7 +52434,7 @@ var BB6 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Controls'
                 )
               )
@@ -52463,7 +52479,7 @@ var BB6 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Status'
                 )
               )
@@ -52479,6 +52495,11 @@ var BB6 = (function (_Component) {
                   { className: 'text-center' },
                   _react2['default'].createElement('img', { src: this.props.img, style: this.props.style })
                 )
+              ),
+              _react2['default'].createElement(
+                'h1',
+                { className: 'text-center' },
+                this.props.status
               )
             )
           )
@@ -52492,6 +52513,7 @@ var BB6 = (function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    status: state.bbSetStates.bbState.state,
     img: state.bbSetStates.bbState.img,
     style: state.bbSetStates.bbState.style
   };
@@ -52581,7 +52603,7 @@ var BB7 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Controls'
                 )
               )
@@ -52626,7 +52648,7 @@ var BB7 = (function (_Component) {
                 null,
                 _react2['default'].createElement(
                   'th',
-                  null,
+                  { className: 'text-center' },
                   'Status'
                 )
               )
@@ -52642,6 +52664,11 @@ var BB7 = (function (_Component) {
                   { className: 'text-center' },
                   _react2['default'].createElement('img', { src: this.props.img, style: this.props.style })
                 )
+              ),
+              _react2['default'].createElement(
+                'h1',
+                { className: 'text-center' },
+                this.props.status
               )
             )
           )
@@ -52655,6 +52682,7 @@ var BB7 = (function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    status: state.bbSetStates.bbState.state,
     img: state.bbSetStates.bbState.img,
     style: state.bbSetStates.bbState.style
   };
@@ -52896,21 +52924,16 @@ function bbSetStates(state, action) {
             });
         case 'STOPPED_BLOOMBERG':
             return _extends({}, state, {
+                bbState: _extends({}, _states.bbState, {
+                    state: 'Not Running',
+                    img: _componentsImages.not_running,
+                    style: { width: 150 }
+                }),
                 startButtonState: _extends({}, _states.startButtonState, {
                     name: 'Start Bloomberg'
                 }),
                 stopButtonState: _extends({}, _states.stopButtonState, {
                     name: 'Stop Bloomberg'
-                }),
-                bbState: _extends({}, _states.bbState, {
-                    img: _componentsImages.not_running,
-                    style: { width: 150 }
-                })
-            });
-        case 'SET_BB_STATE':
-            return _extends({}, state, {
-                bbState: _extends({}, _states.bbState, {
-                    state: action.state
                 })
             });
 
@@ -52934,7 +52957,7 @@ Object.defineProperty(exports, '__esModule', {
 var _componentsImages = __webpack_require__(252);
 
 var StoppedBBState = {
-                    state: 'Stopped',
+                    state: 'Not Running',
                     img: _componentsImages.not_running,
                     style: { width: 150 }
 };

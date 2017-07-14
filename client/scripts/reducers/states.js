@@ -1,7 +1,7 @@
 import { not_running, running } from '../components/images';
 
 export const StoppedBBState = {
-                    state: 'Stopped',
+                    state: 'Not Running',
                     img: not_running,
                     style: { width: 150 }
                 }

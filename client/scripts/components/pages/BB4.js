@@ -20,7 +20,7 @@ class BB4 extends Component {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>Controls</th>
+                    <th className="text-center">Controls</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -47,13 +47,14 @@ class BB4 extends Component {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>Status</th>
+                    <th className="text-center">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td className="text-center"><img src={this.props.img} style={this.props.style}></img></td>
                   </tr>
+                  <h1 className="text-center">{this.props.status}</h1>
                 </tbody>
               </Table>
           </div>
@@ -64,6 +65,7 @@ class BB4 extends Component {
 
 const mapStateToProps = (state) => {
     return {
+      status: state.bbSetStates.bbState.state,
       img: state.bbSetStates.bbState.img,
       style: state.bbSetStates.bbState.style
     };

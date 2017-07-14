@@ -4,8 +4,12 @@ def bb_start_stop(server, username, pwd, cmd):
 	try:
 		if cmd == 'start':
 			if 'chivprod034' in server:
+				proc = subprocess.Popen([r'\\chivprod032\Production\PSExec.exe', '-s', server, 'taskkill', '/im', 'wintrv.exe', '/f'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+				time.sleep(2)
 				proc = subprocess.Popen([r'\\chivprod032\Production\PSExec.exe', '-s', '-i', '1', server, r'\\chivprod032\Production\Support\BloombergLogin\BloombergLogin034.exe', username, pwd], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			else:
+				proc = subprocess.Popen([r'\\chivprod032\Production\PSExec.exe', '-s', server, 'taskkill', '/im', 'wintrv.exe', '/f'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+				time.sleep(2)
 				proc = subprocess.Popen([r'\\chivprod032\Production\PSExec.exe', '-s', '-i', '1', server, r'\\chivprod032\Production\Support\BloombergLogin\BloombergLogin.exe', username, pwd], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			out = proc.stdout.read()
 			err = proc.stderr.read()
