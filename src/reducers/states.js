@@ -24,9 +24,42 @@ export const startButtonState = {
                     classname: 'btn-danger'
                 }
 
+export const bbStates = {
+    chivprod042: {
+        status: 0,
+        img: not_running
+    },
+    chivprod026: {
+        status: 0,
+        img: not_running
+    },
+    chivprod044: {
+        status: 0,
+        img: not_running
+    },
+    chivprod034: {
+        status: 0,
+        img: not_running
+    },
+    chivprod046: {
+        status: 0,
+        img: not_running
+    },
+    chivprod049: {
+        status: 0,
+        img: not_running
+    },
+    chivprod007: {
+        status: 0,
+        img: not_running
+    },
+    style: "danger"
+}
+
 export const InitialState = {
 	bbState: StoppedBBState,
     startedBBState: startedBBState,
     stopButtonState: stopButtonState,
-    startButtonState: startButtonState
+    startButtonState: startButtonState,
+    bbStates: bbStates
 }

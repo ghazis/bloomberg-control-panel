@@ -82,6 +82,40 @@ export function bbSetStates(state = InitialState, action) {
                             name: 'Stop Bloomberg'
                     }
             }
+        case 'SET_BB_STATUS_IMG':
+            if (action.status == 1){
+                return {
+                    ...state,
+                        bbStates: {
+                            ...state.bbStates,
+                            [action.server]: {
+                                ...[action.server],
+                                img: running,
+                                status: 1
+                            }
+                        }
+                }             
+            } else {
+                return {
+                    ...state,
+                        bbStates: {
+                            ...state.bbStates,
+                            [action.server]: {
+                                ...[action.server],
+                                img: not_running,
+                                status: 0
+                            }
+                        }
+                }      
+            }
+        case 'SET_STATUS_STYLE':
+            return {
+                ...state,
+                bbStates: {
+                    ...state.bbStates,
+                    style: action.style
+                }
+            }
 
         default:
             return state;

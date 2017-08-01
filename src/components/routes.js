@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Status from './pages/Status';
 import BB1 from './pages/BB1';
 import BB2 from './pages/BB2';
 import BB3 from './pages/BB3';
@@ -10,7 +11,8 @@ import BB7 from './pages/BB7';
 
 export default (
       <Switch>
-        <Route exact path='/chivprod042' component={BB1} />
+      	<Route exact path='/status' component={Status} />
+        <Route path='/chivprod042' component={BB1} />
         <Route path='/chivprod026' component={BB2} />
         <Route path='/chivprod044' component={BB3} />
         <Route path='/chivprod034' component={BB4} />
