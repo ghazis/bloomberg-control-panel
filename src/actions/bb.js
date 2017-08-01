@@ -1,3 +1,10 @@
+export function setProgress(progress) {
+    return {
+        type: 'SET_PROGRESS',
+        progress: progress
+    };
+}
+
 export function checkingBloomberg() {
     return {
         type: 'CHECKING_BLOOMBERG'
@@ -51,8 +58,20 @@ function setInitialState(dispatch, status) {
     }
 }
 
+export function progress(dispatch, i, secs) {
+    if (i == 10) {
+        setTimeout(() => {dispatch(setProgress(i));}, i*(secs*100));
+        setTimeout(() => {dispatch(setProgress(0));}, i*((secs+3)*100));
+    } else {
+        setTimeout(() => {dispatch(setProgress(i));}, i*(secs*100));
+    }
+}
+
 export function get_state(server) {
     return (dispatch, getState) => {
+        for (var i=0; i<11; i++) {
+            progress(dispatch, i, 2);
+        }
         dispatch(checkingBloomberg())
         fetch('http://chivprod031:9999/get_state?server=\\\\' + server)
             .then((response) => {
@@ -67,8 +86,13 @@ export function get_state(server) {
     };
 }
 
-export function get_all_states(servers) {
+export function get_all_states(servers, initialFlag) {
     return (dispatch, getState) => {
+        if (initialFlag == 1) {
+            for (var i=0; i<11; i++) {
+                progress(dispatch, i, 6);
+            }
+        }
         for (let server of servers) {
             fetch('http://chivprod031:9999/get_state?server=\\\\' + server)
                 .then((response) => {
@@ -107,6 +131,9 @@ export function set_status_style() {
 export function runScript(url, name) {
     return (dispatch, getState) => {
     	if (name == 'Start Bloomberg') {
+            for (var i=0; i<11; i++) {
+                progress(dispatch, i, 53);
+            }
     		dispatch(startBloomberg());
     		fetch(url)
     			.then((response) => {
@@ -119,6 +146,9 @@ export function runScript(url, name) {
             .then((response) => response.json())
             .then(() => dispatch(startedBloomberg()))
     	} else if (name == 'Stop Bloomberg') {
+            for (var i=0; i<11; i++) {
+                progress(dispatch, i, 0.5);
+            }
     		dispatch(stopBloomberg());
     		fetch(url)
     			.then((response) => {

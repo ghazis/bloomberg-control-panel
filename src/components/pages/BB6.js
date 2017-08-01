@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StartButton, StopButton } from '../buttons';
-import { Table } from 'react-bootstrap';
+import { Table, ProgressBar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { get_state } from '../../actions/bb';
 
@@ -55,6 +55,7 @@ class BB6 extends Component {
                     <td className="text-center"><img src={this.props.img} style={this.props.style}></img></td>
                   </tr>
                   <h1 className="text-center">{this.props.status}</h1>
+                  <ProgressBar active now={this.props.progress} max={10}/>
                 </tbody>
               </Table>
           </div>
@@ -65,6 +66,7 @@ class BB6 extends Component {
 
 const mapStateToProps = (state) => {
     return {
+      progress: state.bbSetStates.progress,
       status: state.bbSetStates.bbState.state,
       img: state.bbSetStates.bbState.img,
       style: state.bbSetStates.bbState.style

@@ -3,6 +3,11 @@ import { not_running, running, is_loading } from '../components/images';
 
 export function bbSetStates(state = InitialState, action) {
     switch (action.type) {
+        case 'SET_PROGRESS':
+            return {
+                ...state,
+                    progress: action.progress
+            }
         case 'CHECKING_BLOOMBERG':
             return {
                 ...state,

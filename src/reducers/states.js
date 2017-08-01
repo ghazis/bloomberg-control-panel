@@ -57,6 +57,7 @@ export const bbStates = {
 }
 
 export const InitialState = {
+    progress: 0,
 	bbState: StoppedBBState,
     startedBBState: startedBBState,
     stopButtonState: stopButtonState,

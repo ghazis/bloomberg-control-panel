@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StartButton, StopButton } from '../buttons';
-import { Table, Panel } from 'react-bootstrap';
+import { Table, Panel, ProgressBar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { get_all_states, set_status_style } from '../../actions/bb';
 
@@ -15,7 +15,7 @@ class Status extends Component {
       'chivprod046',
       'chivprod049',
       'chivprod007'
-    ]);
+    ], 1);
   }
 
     componentDidMount() {
@@ -29,7 +29,7 @@ class Status extends Component {
       'chivprod046',
       'chivprod049',
       'chivprod007'
-    ]);} , 6000);
+    ], 0);} , 6000);
 
     this.setState({intervalID: intervalID});
   }
@@ -44,6 +44,7 @@ class Status extends Component {
       <div>
 
           <h1 className="text-center">Current Status</h1>
+          <div className="col-xs-12 text-center" ><ProgressBar active now={this.props.progress} max={10} bsStyle="success"/></div>
           <div className="col-xs-6">
               <Table responsive>
                 <thead>
@@ -51,7 +52,7 @@ class Status extends Component {
                 <tbody>
                   <tr>
                     <td>
-                      <Panel className='text-center' header='Servers' bsStyle={this.props.bbState.style}>
+                      <Panel className='text-center' header='Bloomberg Servers' bsStyle={this.props.bbState.style}>
                         <Table responsive>
                           <thead>
                             <tr>
@@ -131,13 +132,14 @@ class Status extends Component {
 
 const mapStateToProps = (state) => {
     return {
+      progress: state.bbSetStates.progress,
       bbState: state.bbSetStates.bbStates
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        get_all_states: (servers) => dispatch(get_all_states(servers)),
+        get_all_states: (servers, initialFlag) => dispatch(get_all_states(servers, initialFlag)),
         set_status_style: () => dispatch(set_status_style())
     };
 };
