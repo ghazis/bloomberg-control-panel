@@ -42,7 +42,9 @@ class Status extends Component {
 
     return (
       <div>
-
+          <div className="text-center">
+            <h3><a target="_blank" href="http://confluence/display/TRAD/Bloomberg+Screen+Assignments">Bloomberg Screen Assignments</a></h3>
+          </div>
           <h1 className="text-center">Current Status</h1>
           <div className="col-xs-12 text-center" ><ProgressBar active now={this.props.progress} max={10} bsStyle="success"/></div>
           <div className="col-xs-6">

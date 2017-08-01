@@ -70,7 +70,7 @@ export function progress(dispatch, i, secs) {
 export function get_state(server) {
     return (dispatch, getState) => {
         for (var i=0; i<11; i++) {
-            progress(dispatch, i, 2);
+            progress(dispatch, i, 3);
         }
         dispatch(checkingBloomberg())
         fetch('http://chivprod031:9999/get_state?server=\\\\' + server)
@@ -90,7 +90,7 @@ export function get_all_states(servers, initialFlag) {
     return (dispatch, getState) => {
         if (initialFlag == 1) {
             for (var i=0; i<11; i++) {
-                progress(dispatch, i, 6);
+                progress(dispatch, i, 7);
             }
         }
         for (let server of servers) {
